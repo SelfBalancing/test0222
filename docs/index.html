@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>像素圆点动画转换器</title>
+    <!-- 引入 CSS 文件 -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="container">
+            <aside class="sidebar">
+                <!-- 上传图片或视频到这里 -->
+                <div class="panel upload-panel">
+                    <div class="upload-area">
+                        <label for="fileUpload" class="upload-label">
+                            <span class="upload-icon">📁</span>
+                            <span>点击后选择图片/视频上传生成</span>
+                        </label>
+                        <input type="file" id="fileUpload" accept="image/*,video/*" class="upload-input">
+                    </div>
+                </div>
+
+                <!-- 控制区域 -->
+                <div class="panel controls-panel">
+                    <!-- 主要控制项 -->
+                    <div class="control-group">
+                        <label for="gridSize">网格大小</label>
+                        <div class="slider-container">
+                            <input type="range" id="gridSize" min="5" max="50" value="20">
+                            <span class="value-display" id="gridSizeVal">20</span>
+                        </div>
+                    </div>
+
+                    <!-- 图像调整 -->
+                    <div class="control-section">
+                        <h3>图像调整</h3>
+                        <div class="control-group">
+                            <label for="brightness">亮度</label>
+                            <div class="slider-container">
+                                <input type="range" id="brightness" min="-100" max="100" value="20">
+                                <span class="value-display" id="brightnessVal">20</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="contrast">对比度</label>
+                            <div class="slider-container">
+                                <input type="range" id="contrast" min="-100" max="100" value="0">
+                                <span class="value-display" id="contrastVal">0</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="gamma">亮度曲线</label>
+                            <div class="slider-container">
+                                <input type="range" id="gamma" min="0.1" max="3" step="0.1" value="1.0">
+                                <span class="value-display" id="gammaVal">1.0</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label for="smoothing">平滑度</label>
+                            <div class="slider-container">
+                                <input type="range" id="smoothing" min="0" max="5" step="0.5" value="0">
+                                <span class="value-display" id="smoothingVal">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 抖动选项 -->
+                    <div class="control-section">
+                        <h3>抖动处理</h3>
+                        <div class="control-group">
+                            <select id="ditherType" class="dither-select">
+                                <option value="FloydSteinberg">平滑过渡风格（弗洛伊德 - 斯坦伯格）</option>
+                                <option value="Ordered">多边形风格（有序抖动）</option>
+                                <option value="Noise">颗粒风格（噪声抖动）</option>
+                                <option value="None" selected>默认无风格（建议）</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 操作按钮 -->
+                <div class="panel action-panel">
+                    <button id="resetButton" class="btn btn-secondary">全部重置</button>
+                    <button id="saveButton" class="btn btn-primary">导出为 PNG</button>
+                </div>
+            </aside>
+
+            <main class="main-content">
+                <div class="canvas-container">
+                    <canvas id="halftoneCanvas"></canvas>
+                </div>
+            </main>
+        </div>
+    </div>
+    <!-- 引入 JavaScript 文件 -->
+    <script src="script.js"></script>
+</body>
+
+</html>
